@@ -1,0 +1,25 @@
+{
+    "name": "first-project-js",
+    "private": true,
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack-dev-server src/app.js --contentBase public --hot --open",
+        "build": "webpack -p src/app.js && npx -q ncp public dist"
+    },
+    "keywords": [
+        "Typescene",
+        "example"
+    ],
+    "author": "Jelmer Cormont",
+    "license": "MIT",
+    "dependencies": {
+        "@typescene/webapp": "^2.0.13"
+    },
+    "devDependencies": {
+        "webpack": "^4.35.2",
+        "webpack-cli": "^3.3.5",
+        "webpack-dev-server": "^3.7.2"
+    }
+}
