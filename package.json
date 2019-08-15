@@ -4,22 +4,29 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "scripts": {
-        "start": "webpack-dev-server src/app.js --contentBase public --hot --open",
-        "build": "webpack -p src/app.js && npx -q ncp public dist"
-    },
     "keywords": [
         "Typescene",
         "example"
     ],
     "author": "Jelmer Cormont",
     "license": "MIT",
+    "scripts": {
+        "start": "webpack-dev-server --hot --config src/webpack.config.js --no-info --open",
+        "build": "webpack -p --config src/webpack.config.js"
+    },
     "dependencies": {
-        "@typescene/webapp": "^2.0.13"
+        "@typescene/webapp": "^2.0.0"
     },
     "devDependencies": {
-        "webpack": "^4.35.2",
-        "webpack-cli": "^3.3.5",
-        "webpack-dev-server": "^3.7.2"
+        "@babel/core": "^7.5.5",
+        "@babel/plugin-transform-react-jsx": "^7.3.0",
+        "@babel/plugin-transform-runtime": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "@babel/runtime": "^7.5.5",
+        "babel-loader": "^8.0.6",
+        "webpack": "^4.31.0",
+        "webpack-cli": "^3.3.2",
+        "webpack-dev-server": "^3.3.1",
+        "copy-webpack-plugin": "^5.0.3"
     }
 }

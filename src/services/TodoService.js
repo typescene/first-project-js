@@ -1,4 +1,4 @@
-import { CHANGE, managedChild, ManagedList, ManagedRecord, ManagedService } from "typescene";
+import { CHANGE, managedChild, ManagedList, ManagedRecord, ManagedService, observe } from "typescene";
 
 /** Represents a single to-do item */
 export class TodoItem extends ManagedRecord {
@@ -9,13 +9,12 @@ export class TodoItem extends ManagedRecord {
   }
 }
 
-export class TodoService extends ManagedService {
+export default class TodoService extends ManagedService {
   constructor() {
     super();
     this.name = "App.Todo";
-    this.nRemaining = 0;
     this.nCompleted = 0;
-
+    this.nRemaining = 0;
     managedChild(this, "items");
     this.items = new ManagedList()
       .restrict(TodoItem)
@@ -32,10 +31,9 @@ export class TodoService extends ManagedService {
     });
   }
 }
-TodoService.observe(class {
-  constructor(svc) { this.svc = svc }
 
-  // called when (any of) the items change(s):
+observe(TodoService, class {
+  constructor(svc) { this.svc = svc }
   onItemsChangeAsync() {
     let nCompleted = this.svc.items
       .pluck("complete")

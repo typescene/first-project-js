@@ -2,10 +2,9 @@ import { CHANGE, managedChild, ManagedRecord, PageViewActivity, service } from "
 import { TodoItem } from "../../services/TodoService";
 import view from "./view";
 
-export class MainActivity extends PageViewActivity.with(view) {
+export default class MainActivity extends PageViewActivity.with(view) {
   constructor() {
     super();
-    service("App.Todo")(this, "todo");
     this.path = "/";
 
     managedChild(this, "formInput");
@@ -14,10 +13,13 @@ export class MainActivity extends PageViewActivity.with(view) {
     });
   }
 
-  // event handlers:
+  async onManagedStateActiveAsync() {
+    await super.onManagedStateActiveAsync();
+    console.log("MainActivity is now active");
+  }
 
   addTask() {
-    this.todo.addItem(this.formInput.newTask);
+    this.todoService.addItem(this.formInput.newTask);
     this.formInput.newTask = "";
     this.formInput.emit(CHANGE);
   }
@@ -30,6 +32,8 @@ export class MainActivity extends PageViewActivity.with(view) {
   }
 
   removeCompleted() {
-    this.todo.removeCompleted();
+    this.todoService.removeCompleted();
   }
 }
+
+service("App.Todo", MainActivity, "todoService");
