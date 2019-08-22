@@ -5,11 +5,13 @@ A TypeScript version of this code is explained in "Your first project", a guide 
 ### Getting Started
 
 To use this JavaScript-only version in development mode:
+
 - Clone the repository
 - Run `npm install` (to install Webpack and Typescene itself)
 - Run `npm start`
 
 To create and serve a production version in the `dist/` folder:
+
 - Run `npm build`
 - Run `npx http-server dist` and open the URL provided
 

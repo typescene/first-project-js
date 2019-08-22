@@ -9,7 +9,7 @@ export default class MainActivity extends PageViewActivity.with(view) {
 
     managedChild(this, "formInput");
     this.formInput = ManagedRecord.create({
-      newTask: ""
+      newTask: "",
     });
   }
 
